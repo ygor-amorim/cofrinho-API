@@ -1,0 +1,9 @@
+node_modules/
+.env
+*.log
+coverage/
+dist/
+SESSION_LOG.md
+TODO.md
+CLAUDE.md
+
