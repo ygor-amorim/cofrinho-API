@@ -6,6 +6,8 @@ require('dotenv').config();
 
 const db = require('./config/database');
 const app = express();
+const authMiddleware = require('./middlewares/auth');
+
 
 // Sec middleware
 app.use(helmet());
@@ -31,5 +33,6 @@ app.get('/', (req, res) => {
 
 app.use('/users', require('./routes/users')(app));
 app.use('/auth', require('./routes/auth')(app));
-
+app.use('/accounts', authMiddleware, require('./routes/accounts')(app));
+app.use('/transactions', authMiddleware, require('./routes/transactions')(app));
 module.exports = app;

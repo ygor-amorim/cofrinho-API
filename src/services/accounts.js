@@ -1,4 +1,4 @@
-module.exports = (apps) => {
+module.exports = (app) => {
     const findAll = (userId) => {
         return app.db('accounts')
             .where({ user_id: userId })
