@@ -1,6 +1,7 @@
 # Cofrinho API
 
 Personal finance REST API for managing accounts and tracking transactions.
+L
 
 ## Tech Stack
 
@@ -104,6 +105,10 @@ src/
 ├── app.js         # Express app setup
 └── server.js      # Server entry point
 ```
+
+## Acknowledgments
+
+Inspired by a Node.js REST API course (rebuilt from scratch with security improvements)
 
 ## License
 
