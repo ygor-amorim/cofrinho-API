@@ -30,8 +30,13 @@ app.get('/', (req, res) => {
     res.send('Cofrinho API is running');
 });
 
-app.use('/users', require('./routes/users')(app));
+app.use('/users',authMiddleware, require('./routes/users')(app));
 app.use('/auth', require('./routes/auth')(app));
 app.use('/accounts', authMiddleware, require('./routes/accounts')(app));
 app.use('/transactions', authMiddleware, require('./routes/transactions')(app));
+
+// Error handling middleware
+
+app.use(require('./middlewares/errorHandler'));
+
 module.exports = app;
