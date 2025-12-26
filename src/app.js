@@ -3,7 +3,6 @@ const helmet = require('helmet');
 const cors = require('cors');
 require('dotenv').config();
 
-
 const db = require('./config/database');
 const app = express();
 const authMiddleware = require('./middlewares/auth');
