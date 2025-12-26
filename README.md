@@ -1,7 +1,6 @@
 # Cofrinho API
 
 Personal finance REST API for managing accounts and tracking transactions.
-L
 
 ## Tech Stack
 
