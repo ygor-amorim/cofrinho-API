@@ -10,13 +10,29 @@ module.exports = (app) => {
     
     const create = async (user) => {
         // validate required fields
-        if (!user.name) throw new Error('Username is required');
-        if (!user.email) throw new Error('Email is required');
-        if (!user.password) throw new Error('Password is required');
+        if (!user.name) {
+            const err = new Error('Username is required');
+            err.status = 400;
+            throw err;
+        };
+        if (!user.email) {
+            const err = new Error('Email is required');
+            err.status = 400;
+            throw err;
+        };
+        if (!user.password) {
+            const err = new Error('Password is required');
+            err.status = 400;
+            throw err;
+        };
 
         // check for existing e-mail
         const existingUser = await findOne({ email: user.email });
-        if (existingUser) throw new Error('Email already in use');
+        if (existingUser) {
+            const err = new Error('E-mail already in use');
+            err.status = 400;
+            throw err;
+        };
 
         // hash password
         const salt = await bcrypt.genSaltSync(10);

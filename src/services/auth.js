@@ -5,14 +5,30 @@ module.exports = (app) => {
     const userService = require('./users')(app);
 
     const signin = async (email, password) => {
-        if (!email) throw new Error('E-mail is required');
-        if (!password) throw new Error('Password is required');
+        if (!email) {
+            const err = new Error('E-mail is required');
+            err.status = 400;
+            throw err;
+        };
+        if (!password) {
+            const err = new Error('Password is required');
+            err.status = 400;
+            throw err;
+        };
         
         const user = await userService.findOne({ email });
-        if (!user) throw new Error('Invalid e-mail or password');
+        if (!user){ 
+            const err = new Error('Invalid e-mail or password');
+            err.status = 401;
+            throw err;
+        } 
 
         const isMatch = bcrypt.compareSync(password, user.password);
-        if(!isMatch) throw new Error('Invalid e-mail or password');
+        if(!isMatch) {
+            const err = new Error('Invalid e-mail or password');
+            err.status = 401;
+            throw err;
+        }
 
         // Create JWT token
         const token = jwt.sign(
